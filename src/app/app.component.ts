@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ChildComponent } from './child/child.component';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'inputoutput';
+  @ViewChild(ChildComponent) child:ChildComponent;
+  title = 'Hello AppComponent';
+  childValue;
+
+  count:number=0;
+
+  ngOnInit(): void {
+    this.child.sayHello()
+  }
+
+  getChildValue($event){
+    this.childValue = $event;
+  }
+
+  clicked(){
+    this.count ++;
+  }
+
 }
